@@ -1,0 +1,8 @@
+POST https://71l97yjul4.execute-api.us-east-1.amazonaws.com/prod/
+Content-Type: application/json
+
+{
+    "fullName" : "James Bower",
+    "age" : "23",
+    "position" : "SWE Intern"
+}
