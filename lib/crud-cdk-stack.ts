@@ -17,7 +17,7 @@ export class CrudCdkStack extends cdk.Stack {
     
     const createEmployee = new lambda.Function(this, "createEmployee", {
       runtime: lambda.Runtime.NODEJS_14_X,
-      code: lambda.Code.fromAsset('lambda'),
+      code: lambda.Code.fromAsset('lambda/create'),
       handler : 'createEmployee.handler',
       environment : {
         EMPLOYEE_TABLE_NAME : employeeTable.tableName
