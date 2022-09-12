@@ -1,8 +1,15 @@
-POST https://71l97yjul4.execute-api.us-east-1.amazonaws.com/prod/
+POST https://71l97yjul4.execute-api.us-east-1.amazonaws.com/prod/createEmployee
+Accept: application/json
 Content-Type: application/json
 
 {
-    "fullName" : "Micheal Bower",
-    "age" : "23",
-    "position" : "SWE Intern"
+    "fullName" : "James Manny",
+    "age" : "20",
+    "position" : "SR DevOps"
 }
+
+###
+GET https://71l97yjul4.execute-api.us-east-1.amazonaws.com/prod/readEmployee
+
+###
+DELETE https://71l97yjul4.execute-api.us-east-1.amazonaws.com/prod/deleteEmployee/b6196e8b-8953-4440-b3fe-52b6cdb5acad
