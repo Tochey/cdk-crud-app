@@ -42,9 +42,19 @@ export class CrudCdkStack extends cdk.Stack {
       }
     })
 
+    const updateEmployee = new lambda.Function(this, "updateEmployee", {
+        runtime : lambda.Runtime.NODEJS_14_X,
+        code: lambda.Code.fromAsset('lambda/update'),
+        handler: 'updateEmployee.handler',
+        environment: {
+          EMPLOYEE_TABLE_NAME: employeeTable.tableName
+        }
+    })
+
     employeeTable.grantWriteData(createEmployee)
     employeeTable.grantReadData(readEmployee)
     employeeTable.grantReadWriteData(deleteEmployee)
+    employeeTable.grantReadWriteData(updateEmployee)
 
     const api = new apigw.LambdaRestApi(this, "lambdaApi", {
       handler: createEmployee,
@@ -54,11 +64,17 @@ export class CrudCdkStack extends cdk.Stack {
 
     const createEmployeeEDP = api.root.addResource('createEmployee')
     const readEmployeeEDP = api.root.addResource('readEmployee')
+    const updateEmployeeEDP = api.root.addResource('updateEmployee')
     const deleteEmployeeEDP = api.root.addResource('deleteEmployee')
-    const userIdEDP = deleteEmployeeEDP.addResource('{userId}')
+    const readByIdEDP = readEmployeeEDP.addResource('{userId}')
+    const deleteByIdEDP = deleteEmployeeEDP.addResource('{userId}')
+    const updateByIdEDP = updateEmployeeEDP.addResource('{userId}')
+
     createEmployeeEDP.addMethod('POST', new apigw.LambdaIntegration(createEmployee))
     readEmployeeEDP.addMethod('GET', new apigw.LambdaIntegration(readEmployee))
-    userIdEDP.addMethod('DELETE', new apigw.LambdaIntegration(deleteEmployee))
+    deleteByIdEDP.addMethod('DELETE', new apigw.LambdaIntegration(deleteEmployee))
+    readByIdEDP.addMethod('GET', new apigw.LambdaIntegration(readEmployee))
+    updateByIdEDP.addMethod('POST', new apigw.LambdaIntegration(updateEmployee))
 
   }
 }

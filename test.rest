@@ -3,9 +3,9 @@ Accept: application/json
 Content-Type: application/json
 
 {
-    "fullName" : "James Manny",
-    "age" : "20",
-    "position" : "SR DevOps"
+    "fullName" : "Tochi Don",
+    "age" : "29",
+    "position" : "Software Developer"
 }
 
 ###
@@ -13,3 +13,14 @@ GET https://71l97yjul4.execute-api.us-east-1.amazonaws.com/prod/readEmployee
 
 ###
 DELETE https://71l97yjul4.execute-api.us-east-1.amazonaws.com/prod/deleteEmployee/b6196e8b-8953-4440-b3fe-52b6cdb5acad
+
+###
+POST https://71l97yjul4.execute-api.us-east-1.amazonaws.com/prod/updateEmployee/3e0f64a0-6dbb-464f-8531-1ed3cc4a3e42
+Accept: application/json
+Content-Type: application/json
+
+{
+    "fullName" : "James Updated",
+    "age" : "50",
+    "position" : "Top Level Staff SWE"
+}

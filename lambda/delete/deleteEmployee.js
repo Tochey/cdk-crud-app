@@ -13,8 +13,6 @@ exports.handler = async (event) => {
         TableName: process.env.EMPLOYEE_TABLE_NAME
     }
 
-    console.log(userId)
-
     await dynamo.getItem(params, (err, data) => {
         if (err) console.log(err)
         user = data
